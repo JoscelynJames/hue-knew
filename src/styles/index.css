@@ -1,4 +1,5 @@
-#app {
+body {
+  margin: 0px;
   font-family: Poppins, Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
