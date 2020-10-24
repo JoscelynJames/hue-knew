@@ -1,11 +1,15 @@
 <template>
-  <div id="color-gen-app"></div>
+  <div id="color-gen-app">
+    <generate />
+  </div>
 </template>
 
 <script>
-
+import Generate from './pages/Generate.vue'
 export default {
   name: 'App',
-  components: {}
+  components: {
+    'generate': Generate
+  }
 }
 </script>
