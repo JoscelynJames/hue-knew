@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import NavBar from '../templates/NavBar.vue'
+import NavBar from "../templates/NavBar.vue";
 
 export default {
-  name: 'Generate',
+  name: "Generate",
   components: {
-    'nav-bar': NavBar 
-  }
-}
+    "nav-bar": NavBar,
+  },
+};
 </script>

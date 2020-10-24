@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import Generate from './pages/Generate.vue'
+import Generate from "./pages/Generate.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    'generate': Generate
-  }
-}
+    generate: Generate,
+  },
+};
 </script>
