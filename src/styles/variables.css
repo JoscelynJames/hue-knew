@@ -1,4 +1,7 @@
 html {
-  /* Variables - break out into own file if gets to long */
+  --primary-color: #6d41e6;
+  --primary-dark-color: #460de4;
+  --primary-light-color: lavender;
   --box-shadow-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --button-focus: var(--primary-color) 0px 0px 8px 2px;
 }
