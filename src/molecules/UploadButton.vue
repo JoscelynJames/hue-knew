@@ -18,10 +18,12 @@ export default {
     },
 
     handleFileChange(e) {
-      const image = e.target.files
+      const image = e.target.files[0]
+      
       if (!image) throw Error('No image was provided')
 
-      this.$emit('file-uploaded', { image })
+      const url = URL.createObjectURL(image)
+      this.$emit('file-uploaded', { url })
     }
   }
 };

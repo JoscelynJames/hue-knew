@@ -1,11 +1,15 @@
 <template>
   <main id="generate-page">
     <section>
-      <upload-button @file-uploaded="setImage" text="UPLOAD" name="upload-button"/>
+      <upload-button
+        @file-uploaded="setImage"
+        text="UPLOAD"
+        name="upload-button"
+      />
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
-    <canvas id="image-canvas"></canvas>
+    <canvas id="image-canvas" height="100" width="100"></canvas>
     <!-- This will be the svg we generate and draw our colors onto -->
     <svg id="bubbles-svg"></svg>
   </main>
@@ -21,20 +25,34 @@ export default {
   },
   methods: {
     setImage(image) {
-      this.image = image
+      this.image = image.url;
+      // TODO: move this - this should happen reactivly when the image is updated
+      this.drawImage()
     },
+
+    drawImage() {
+      // create a new HTMLImageElement for drawImage
+      const img = new Image(100, 100);
+      img.src = this.image;
+     // wait for the image to load otherwise it paints a blank img
+      img.onload = () => {
+        this.context.drawImage(img, 0, 0, 100, 100);
+        this.imageData = this.context.createImageData(100, 100);
+      };
+    }
   },
   data() {
     return {
       image: {},
       canvas: {},
-      context: {}
-    }
+      context: {},
+      imageData: {},
+    };
   },
   mounted() {
-    this.canvas = document.getElementById('image-canvas')
-    this.context = this.canvas.getContext('2d')
-  }
+    this.canvas = document.getElementById("image-canvas");
+    this.context = this.canvas.getContext("2d");
+  },
 };
 </script>
 
