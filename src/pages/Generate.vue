@@ -19,16 +19,22 @@ export default {
   components: {
     "upload-button": Button,
   },
-  data() {
-    return {
-      image: {}
-    }
-  },
   methods: {
     setImage(image) {
       this.image = image
     },
   },
+  data() {
+    return {
+      image: {},
+      canvas: {},
+      context: {}
+    }
+  },
+  mounted() {
+    this.canvas = document.getElementById('image-canvas')
+    this.context = this.canvas.getContext('2d')
+  }
 };
 </script>
 
