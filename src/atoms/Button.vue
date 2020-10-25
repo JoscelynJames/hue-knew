@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :name="name">
+  <button class="outlined-button" type="button" v-bind:name="name">
     {{ text }}
   </button>
 </template>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-button {
+.outlined-button {
   height: 64px;
   min-width: 200px;
   background: white;
@@ -27,17 +27,17 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.outlined-button:hover {
   color: var(--primary-dark-color);
   border-color: var(--primary-dark-color);
 }
 
-button:focus {
+.outlined-button:focus {
   outline: none;
   box-shadow: var(--button-focus);
 }
 
-button:active {
+.outlined-button:active {
   background: var(--primary-light-color);
   color: var(--primary-dark-color);
   border-color: var(--primary-dark-color);
