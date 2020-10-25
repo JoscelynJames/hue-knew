@@ -1,7 +1,7 @@
 <template>
   <main id="generate-page">
     <section>
-      <upload-button text="UPLOAD" name="upload-button"/>
+      <upload-button @file-uploaded="setImage" text="UPLOAD" name="upload-button"/>
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
@@ -18,6 +18,16 @@ export default {
   name: "Generate",
   components: {
     "upload-button": Button,
+  },
+  data() {
+    return {
+      image: {}
+    }
+  },
+  methods: {
+    setImage(image) {
+      this.image = image
+    },
   },
 };
 </script>
