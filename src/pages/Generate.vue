@@ -11,7 +11,7 @@
     <!-- This will be the canvas to draw the image -->
     <canvas id="image-canvas" height="100" width="100"></canvas>
     <!-- This will be the svg we generate and draw our colors onto -->
-    <svg id="bubbles-svg"></svg>
+    <svg id="generated-svg"></svg>
   </main>
 </template>
 
@@ -26,31 +26,27 @@ export default {
   },
   methods: {
     setImage(image) {
-      this.image = image.url;
-      // TODO: move this - this should happen reactivly when the image is updated
-      this.drawImage();
+      this.drawImage(image.url);
     },
 
-    drawImage() {
+    drawImage(image) {
       // create a new HTMLImageElement for drawImage
       const img = new Image(100, 100);
-      img.src = this.image;
+      img.src = image;
       // wait for the image to load otherwise it paints a blank img
       img.onload = () => {
         this.context.drawImage(img, 0, 0, 100, 100);
-        
         const imageData = this.context.getImageData(0, 0, 100, 100);
-        this.colorService.setImageData(imageData.data);
-        this.colorService.formatAndGroupColors(imageData.data);
+        const colorService = new ColorService(imageData.data)
+
+        colorService.generateSVG()
       };
     },
   },
   data() {
     return {
-      image: {},
       canvas: {},
       context: {},
-      colorService: new ColorService(),
     };
   },
   mounted() {
