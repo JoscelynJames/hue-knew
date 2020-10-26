@@ -27,19 +27,19 @@ export default {
     setImage(image) {
       this.image = image.url;
       // TODO: move this - this should happen reactivly when the image is updated
-      this.drawImage()
+      this.drawImage();
     },
 
     drawImage() {
       // create a new HTMLImageElement for drawImage
       const img = new Image(100, 100);
       img.src = this.image;
-     // wait for the image to load otherwise it paints a blank img
+      // wait for the image to load otherwise it paints a blank img
       img.onload = () => {
         this.context.drawImage(img, 0, 0, 100, 100);
-        this.imageData = this.context.createImageData(100, 100);
+        const imageData = this.context.getImageData(0, 0, 100, 100);
       };
-    }
+    },
   },
   data() {
     return {
