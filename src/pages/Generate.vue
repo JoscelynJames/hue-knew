@@ -17,6 +17,7 @@
 
 <script>
 import Button from "../molecules/UploadButton.vue";
+import { ColorService } from "../services/ColorService";
 
 export default {
   name: "Generate",
@@ -37,7 +38,10 @@ export default {
       // wait for the image to load otherwise it paints a blank img
       img.onload = () => {
         this.context.drawImage(img, 0, 0, 100, 100);
+        
         const imageData = this.context.getImageData(0, 0, 100, 100);
+        this.colorService.setImageData(imageData.data);
+        this.colorService.formatAndGroupColors(imageData.data);
       };
     },
   },
@@ -46,7 +50,7 @@ export default {
       image: {},
       canvas: {},
       context: {},
-      imageData: {},
+      colorService: new ColorService(),
     };
   },
   mounted() {
