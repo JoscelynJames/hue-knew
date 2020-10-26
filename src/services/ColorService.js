@@ -2,9 +2,13 @@ const SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 
 export class ColorService {
   imageData // array of numbers corresponding to all RGBA colors in the image
-  
+  windowHeight
+  windowWidth
+
   constructor(imageData) {
     this.imageData = imageData
+    this.windowHeight = window.innerHeight
+    this.windowWidth = window.innerWidth
   }
 
   // Loops over the color data returned from getImageData - https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData
@@ -34,8 +38,8 @@ export class ColorService {
 
       const svg = document.getElementById('generated-svg')
       const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
-      const randomX = Math.random() * 300
-      const randomY = Math.random() * 150
+      const randomX = Math.random() * this.windowWidth
+      const randomY = Math.random() * this.windowHeight
 
       circle.setAttribute('r', value)
       circle.setAttribute('cx', randomX)

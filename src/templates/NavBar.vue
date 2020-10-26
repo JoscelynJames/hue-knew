@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <h2>Color Pop</h2>
+    <h3>Color Pop</h3>
   </nav>
 </template>
 
@@ -12,8 +12,10 @@ export default {
 
 <style scoped>
 nav {
-  text-align: center;
   height: 72px;
   box-shadow: var(--box-shadow-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

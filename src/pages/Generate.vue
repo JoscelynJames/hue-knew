@@ -1,6 +1,6 @@
 <template>
   <main id="generate-page">
-    <section>
+    <section id="button-section">
       <upload-button
         @file-uploaded="setImage"
         text="UPLOAD"
@@ -9,9 +9,9 @@
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
-    <canvas id="image-canvas" height="100" width="100"></canvas>
+    <canvas id="image-canvas" hidden></canvas>
     <!-- This will be the svg we generate and draw our colors onto -->
-    <svg id="generated-svg"></svg>
+    <svg id="generated-svg" height="100vh" width="100vw"></svg>
   </main>
 </template>
 
@@ -61,5 +61,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#button-section {
+  margin: 72px;
+}
+
+#generated-svg {
+  position: absolute;
+  z-index: -1;
 }
 </style>
