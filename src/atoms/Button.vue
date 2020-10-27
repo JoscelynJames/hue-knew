@@ -1,6 +1,7 @@
 <template>
   <button class="outlined-button" type="button" v-bind:name="name">
-    {{ text }}
+    <img v-if="loading" class="loading" src="../assets/loading.svg" />
+    <span v-else>{{ text }}</span>
   </button>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   props: {
     text: String,
     name: String,
+    loading: Boolean
   },
 };
 </script>
@@ -41,5 +43,9 @@ export default {
   background: var(--primary-light-color);
   color: var(--primary-dark-color);
   border-color: var(--primary-dark-color);
+}
+
+.loading {
+  height: 40px;
 }
 </style>

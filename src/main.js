@@ -4,4 +4,4 @@ import './styles/index.css'
 import './styles/typography.css'
 import './styles/variables.css'
 
-createApp(App).mount('#app')
+const app = createApp(App).mount('#app')

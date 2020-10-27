@@ -37,9 +37,9 @@ export default {
       img.onload = () => {
         this.context.drawImage(img, 0, 0, 100, 100);
         const imageData = this.context.getImageData(0, 0, 100, 100);
-        const colorService = new ColorService(imageData.data)
+        const colorService = new ColorService(imageData.data);
 
-        colorService.generateSVG()
+        colorService.generateSVG();
       };
     },
   },
