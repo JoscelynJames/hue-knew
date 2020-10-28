@@ -31,8 +31,9 @@ export class ImageService {
       img.onload = () => {
         this.context.drawImage(img, 0, 0, 100, 100);
         const imageData = this.context.getImageData(0, 0, 100, 100);
-
-        res(imageData)
+        // Set time out is purely UX driven decision
+        // all the stuff completes so fast that we want to give illusion we are doing stuff 
+        setTimeout(() => res(imageData), 1000)
       }
     })
   }

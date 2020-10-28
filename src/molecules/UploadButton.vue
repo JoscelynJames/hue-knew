@@ -26,6 +26,9 @@ export default {
     "outlined-button": Button,
     "loading-button": IconButton,
   },
+  props: {
+    loading: Boolean
+  },
   emits: ["file-uploaded"],
   methods: {
     handleButtonClick() {
@@ -35,9 +38,6 @@ export default {
     handleFileChange(e) {
       this.$emit("file-uploaded", e.target.files[0])
     },
-  },
-  data() {
-    return { loading: false };
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <main id="generate-page">
     <section id="button-section">
-      <upload-button @file-uploaded="analyzeImageUploaded" />
+      <upload-button @file-uploaded="analyzeImageUploaded" :loading="loading" />
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
@@ -23,16 +23,19 @@ export default {
   },
   methods: {
     async analyzeImageUploaded(image) {
+      this.loading = true;
       const imageService = new ImageService(image, this.context);
       const imageData = await imageService.drawImage();
       const colorService = new ColorService(imageData.data);
   
       colorService.generateSVG();
+      this.loading = false;
     },
   },
   data() {
     return {
       context: {},
+      loading: false
     };
   },
   mounted() {
