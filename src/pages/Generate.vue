@@ -1,11 +1,7 @@
 <template>
   <main id="generate-page">
     <section id="button-section">
-      <upload-button
-        @file-uploaded="setImage"
-        text="UPLOAD"
-        name="upload-button"
-      />
+      <upload-button @file-uploaded="setImage" />
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
