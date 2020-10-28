@@ -33,16 +33,7 @@ export default {
     },
 
     handleFileChange(e) {
-      const image = e.target.files[0];
-      // TODO: add file type validation here and provide user feedback
-      if (!image) throw Error("No image was provided");
-
-      this.loading = true;
-      setTimeout(() => {
-        const url = URL.createObjectURL(image);
-        this.$emit("file-uploaded", { url });
-        this.loading = false;
-      }, 2000);
+      this.$emit("file-uploaded", e.target.files[0])
     },
   },
   data() {

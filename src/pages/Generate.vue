@@ -1,7 +1,7 @@
 <template>
   <main id="generate-page">
     <section id="button-section">
-      <upload-button @file-uploaded="setImage" />
+      <upload-button @file-uploaded="analyzeImageUploaded" />
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
     </section>
     <!-- This will be the canvas to draw the image -->
@@ -14,6 +14,7 @@
 <script>
 import Button from "../molecules/UploadButton.vue";
 import { ColorService } from "../services/ColorService";
+import { ImageService } from "../services/ImageService";
 
 export default {
   name: "Generate",
@@ -21,33 +22,22 @@ export default {
     "upload-button": Button,
   },
   methods: {
-    setImage(image) {
-      this.drawImage(image.url);
-    },
-
-    drawImage(image) {
-      // create a new HTMLImageElement for drawImage
-      const img = new Image(100, 100);
-      img.src = image;
-      // wait for the image to load otherwise it paints a blank img
-      img.onload = () => {
-        this.context.drawImage(img, 0, 0, 100, 100);
-        const imageData = this.context.getImageData(0, 0, 100, 100);
-        const colorService = new ColorService(imageData.data);
-
-        colorService.generateSVG();
-      };
+    async analyzeImageUploaded(image) {
+      const imageService = new ImageService(image, this.context);
+      const imageData = await imageService.drawImage();
+      const colorService = new ColorService(imageData.data);
+  
+      colorService.generateSVG();
     },
   },
   data() {
     return {
-      canvas: {},
       context: {},
     };
   },
   mounted() {
-    this.canvas = document.getElementById("image-canvas");
-    this.context = this.canvas.getContext("2d");
+    const canvas = document.getElementById("image-canvas");
+    this.context = canvas.getContext("2d");
   },
 };
 </script>
