@@ -1,22 +1,3 @@
-<template>
-  <button class="outlined-button" type="button" v-bind:name="name">
-    <img v-if="loading" class="loading" src="../assets/loading.svg" />
-    <span v-else>{{ text }}</span>
-  </button>
-</template>
-
-<script>
-export default {
-  name: "Button",
-  props: {
-    text: String,
-    name: String,
-    loading: Boolean
-  },
-};
-</script>
-
-<style scoped>
 .outlined-button {
   height: 64px;
   min-width: 200px;
@@ -45,7 +26,6 @@ export default {
   border-color: var(--primary-dark-color);
 }
 
-.loading {
+.loading-animation {
   height: 40px;
 }
-</style>
