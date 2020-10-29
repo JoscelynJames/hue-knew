@@ -1,12 +1,15 @@
 <template>
-  <div class="tooltip-container">
+  <div v-show="showTooltip" class="tooltip-container">
     <div class="tooltip-body">
-      <p>{{ text }}</p>
+      <h6>{{ text }}</h6>
+      <flat-button @click="dismissTooltip" text="DISMISS"/>
     </div>
   </div>
 </template>
 
 <script>
+import FlatButton from '../atoms/buttons/FlatButton.vue'
+
 export default {
   name: "Tooltip",
   props: {
@@ -15,6 +18,20 @@ export default {
     width: String,
     text: String,
   },
+  components: {
+    'flat-button': FlatButton
+  },
+  data() {
+    return {
+      showTooltip: true
+    }
+  },
+  methods: {
+    dismissTooltip() {
+      console.log('yo')
+      this.showTooltip = false
+    }
+  }
 };
 </script>
 
@@ -30,6 +47,10 @@ foreignObject {
 .tooltip-body {
   color: var(--off-white);
   padding: 10px;
+}
+
+h6 {
+  padding: 5px;
 }
 
 .tooltip-container {
