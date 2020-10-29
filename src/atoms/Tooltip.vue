@@ -1,15 +1,9 @@
 <template>
-  <svg
-    :width="width"
-    :height="height"
-    viewBox="0 0 322 156"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M0.59668 140.022V31.0797C0.59668 22.7954 7.3124 16.0797 15.5967 16.0797H54.7851L68.7528 0.792542L81.0789 16.0797H306.464C314.748 16.0797 321.464 22.7954 321.464 31.0797V140.022C321.464 148.307 314.748 155.022 306.464 155.022H15.5967C7.31241 155.022 0.59668 148.307 0.59668 140.022Z"
-      :fill="fill"
-    />
-  </svg>
+  <div class="tooltip-container">
+    <div class="tooltip-body">
+      <p>{{ text }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,9 +13,45 @@ export default {
     fill: String,
     height: String,
     width: String,
-  }
+    text: String,
+  },
 };
 </script>
 
 <style scoped>
+foreignObject {
+  height: 100%;
+  width: 100%;
+  x: 0;
+  y: 0;
+  padding: 30px 0px 0px 16px;
+}
+
+.tooltip-body {
+  color: var(--off-white);
+  padding: 10px;
+}
+
+.tooltip-container {
+  position: relative;
+  background: var(--primary-color);
+  border-radius: 0.4em;
+  margin-top: 20px;
+  max-width: 300px;
+}
+
+.tooltip-container:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-width: 0px 8px 12px;
+  border-bottom-color: var(--primary-color);
+  border-top: 0;
+  margin-left: -10px;
+  margin-top: -20px;
+}
 </style>
