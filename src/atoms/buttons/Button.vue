@@ -1,5 +1,5 @@
 <template>
-  <button class="outlined-button" type="button" v-bind:name="name">
+  <button class="outlined-button" type="button" :name="name">
     <span>{{ text }}</span>
   </button>
 </template>
@@ -9,8 +9,7 @@ export default {
   name: "Button",
   props: {
     text: String,
-    name: String,
-    loading: Boolean,
+    name: String
   },
 };
 </script>
