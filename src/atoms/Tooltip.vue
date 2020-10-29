@@ -1,7 +1,7 @@
 <template>
   <div v-show="showTooltip" class="tooltip-container">
     <div class="tooltip-body">
-      <h6>{{ text }}</h6>
+      <h6 class="tooltip-text">{{ text }}</h6>
       <flat-button @click="dismissTooltip" text="DISMISS"/>
     </div>
   </div>
@@ -37,20 +37,12 @@ export default {
 
 <style scoped>
 /* TODO - add fade in and out transistions for thisf */
-foreignObject {
-  height: 100%;
-  width: 100%;
-  x: 0;
-  y: 0;
-  padding: 30px 0px 0px 16px;
-}
-
 .tooltip-body {
   color: var(--off-white);
   padding: 10px;
 }
 
-h6 {
+.tooltip-text {
   padding: 5px;
 }
 
