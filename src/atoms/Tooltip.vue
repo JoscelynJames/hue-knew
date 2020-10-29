@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     dismissTooltip() {
-      console.log('yo')
+      // TODO - add a fade out transition here 
       this.showTooltip = false
     }
   }
@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style scoped>
+/* TODO - add fade in and out transistions for thisf */
 foreignObject {
   height: 100%;
   width: 100%;
