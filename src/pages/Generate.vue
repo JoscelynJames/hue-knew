@@ -1,8 +1,11 @@
 <template>
   <main id="generate-page">
     <section id="button-section">
-      <upload-button @file-uploaded="analyzeImageUploaded" :loading="loading" />
+      <upload-button v-tooltip @file-uploaded="analyzeImageUploaded" :loading="loading" />
       <!-- TODO feature: add a save button here to save the colors in json, csv or the svg  -->
+    </section>
+    <section>
+      <tooltip :text="getStartedTooltip"/>
     </section>
     <!-- This will be the canvas to draw the image -->
     <canvas id="image-canvas" hidden></canvas>
@@ -13,6 +16,7 @@
 
 <script>
 import Button from "../molecules/UploadButton.vue";
+import Tooltip from "../atoms/Tooltip.vue";
 import { ColorService } from "../services/ColorService";
 import { ImageService } from "../services/ImageService";
 
@@ -20,6 +24,7 @@ export default {
   name: "Generate",
   components: {
     "upload-button": Button,
+    "tooltip": Tooltip,
   },
   methods: {
     async analyzeImageUploaded(image) {
@@ -35,7 +40,8 @@ export default {
   data() {
     return {
       context: {},
-      loading: false
+      loading: false,
+      getStartedTooltip: 'Get started by uploading an image. Click the button above to get started!'
     };
   },
   mounted() {
@@ -53,7 +59,7 @@ export default {
 }
 
 #button-section {
-  margin: 72px;
+  margin: 72px 72px 0px 72px;
 }
 
 #generated-svg {
