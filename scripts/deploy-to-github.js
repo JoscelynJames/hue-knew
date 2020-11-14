@@ -11,6 +11,7 @@ const fs = require("fs");
     await execa("npm", ["run", "build"]);
     // Add, Commit and Push the chagnes to the new branch
     console.log("Adding all work to github branch");
+    await execa("mv", ["public", "dist"]);
     await execa("git", ["--work-tree", "dist", "add", "--all"]);
     console.log("Commiting to github branch");
     await execa("git", ["--work-tree", "dist", "commit", "-m", "gh-pages"]);
