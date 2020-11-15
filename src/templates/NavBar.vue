@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <h3>Color Pop</h3>
+    <h3>Hue Knew</h3>
   </nav>
 </template>
 
