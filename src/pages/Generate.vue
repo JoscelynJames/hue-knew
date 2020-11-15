@@ -41,7 +41,7 @@ export default {
     return {
       context: {},
       loading: false,
-      getStartedTooltip: 'Get started by uploading an image. Click the button above to get started!'
+      getStartedTooltip: 'Click the button above to get started! Updload an image to anaylze and see the color hues that make up the image!'
     };
   },
   mounted() {
