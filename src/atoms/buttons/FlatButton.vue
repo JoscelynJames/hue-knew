@@ -17,11 +17,11 @@ export default {
 <style >
 .flat-button {
   background: none;
-  color: white;
+  color: var(--disabled);
   border: none;
   padding: 5px;
   border-radius: 5px;
-  opacity: .5;
+
 }
 
 .flat-button:hover {

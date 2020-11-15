@@ -5,6 +5,7 @@ html {
   --primary-light-color: #d6d6ee8e;
   --secondary-color: #78899A;
   --off-white: #FCFCFC;
+  --disabled: #c4c2d8;
   --text-on-secondary: white;
   --text-on-primary: white;
   --text-on-primary-light: var(--primary-dark-color);
