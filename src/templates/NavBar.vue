@@ -17,5 +17,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--primary-light-color);
+  color: var(--text-on-primary-light);
 }
 </style>

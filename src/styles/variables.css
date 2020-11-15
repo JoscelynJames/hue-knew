@@ -3,7 +3,11 @@ html {
   --primary-mid-color: #838193;
   --primary-dark-color: #363447;
   --primary-light-color: #d6d6ee8e;
+  --secondary-color: #78899A;
   --off-white: #FCFCFC;
+  --text-on-secondary: white;
+  --text-on-primary: white;
+  --text-on-primary-light: var(--primary-dark-color);
   --box-shadow-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --button-focus: var(--primary-mid-color) 0px 0px 8px 2px;
 }
