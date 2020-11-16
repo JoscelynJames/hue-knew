@@ -6,7 +6,7 @@ const COLOR_DIFF = 20
 export class ColorService {
   /** 
    * array of numbers corresponding to all RGBA colors in the image
-   * [255, 255, 255, 255]
+   * [255, 255, 255, 255, ...]
    */ 
   imageData 
   // number value of the window height
@@ -39,13 +39,18 @@ export class ColorService {
 
     return colorsArray
   }
-
+  
+  /**
+   * Handles the logic of drawing the circles in the svg. Loops over an array of RGBA color strings
+   * ['rgba(255, 255, 255, 255)', ...]
+   */
   generateSVG() {
     this.combineSimilarColors().forEach((value, key) => {
       if (value < COUNT_MIN) return
 
       const svg = document.getElementById('generated-svg')
       const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
+      // Figure our a random x and y off the window height. This will randomoly place the circles on the page
       const randomX = Math.random() * this.windowWidth
       const randomY = Math.random() * this.windowHeight
 
@@ -57,7 +62,9 @@ export class ColorService {
       svg.appendChild(circle)
     })
   }
-
+  /**
+   * Combines similar colors together and returns a map of the top colors
+   */
   combineSimilarColors() {
     const combinedColorMap = new Map()
     
@@ -86,11 +93,14 @@ export class ColorService {
       previousCount = currentCount
       return
     })
-    console.log(combinedColorMap)
+
     return combinedColorMap
   }
-
-  // returns an object the the rgba values as keys on that object
+  /**
+   * Parses a rgba color string and returns an object of the values
+   * returns an object the the rgba values as keys on that object
+   * { r: 255, g: 255, b: 255, a 255 }
+   */
   parseColorString(colorString) {
     if (!colorString.includes('rgba')) throw Error('Invalid rgba color provided')
 
@@ -104,7 +114,9 @@ export class ColorService {
 
     throw Error(`Error happened while parsing color string. No RGBA returned for value: ${colorString}`)
   }
-
+  /**
+   * Compares 2 rgba objects to see if the colors are similar
+   */
   compareColorValues(current, prev) {
     let rDiff = Math.abs(current.r - prev.r)
     let gDiff = Math.abs(current.g - prev.g)
