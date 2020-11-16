@@ -1,8 +1,17 @@
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg"
+const RGBA_REGEX = /\d+/g
+const COUNT_MIN = 10
+const COLOR_DIFF = 20
 
 export class ColorService {
-  imageData // array of numbers corresponding to all RGBA colors in the image
+  /** 
+   * array of numbers corresponding to all RGBA colors in the image
+   * [255, 255, 255, 255]
+   */ 
+  imageData 
+  // number value of the window height
   windowHeight
+    // number value of the window width
   windowWidth
 
   constructor(imageData) {
@@ -32,9 +41,8 @@ export class ColorService {
   }
 
   generateSVG() {
-    const colorMap = this.formatAndGroupColors()
-    colorMap.forEach((value, key) => {
-      if (value < 5) return
+    this.combineSimilarColors().forEach((value, key) => {
+      if (value < COUNT_MIN) return
 
       const svg = document.getElementById('generated-svg')
       const circle = document.createElementNS(SVG_NAMESPACE, 'circle');
@@ -48,5 +56,61 @@ export class ColorService {
 
       svg.appendChild(circle)
     })
+  }
+
+  combineSimilarColors() {
+    const combinedColorMap = new Map()
+    
+    let previousColor, previousCount
+    this.formatAndGroupColors().forEach((currentCount, currentColor) => {
+
+      if (!previousColor) {
+        previousColor = currentColor
+        previousCount = currentCount
+        return 
+      }
+
+      const currentRgbaValues = this.parseColorString(currentColor)
+      const previousRgbaValues = this.parseColorString(previousColor)
+      
+      if (!previousRgbaValues || !currentRgbaValues) return
+
+      const colorsAreSimilar = this.compareColorValues(currentRgbaValues, previousRgbaValues)
+      let count = currentCount
+
+      if (colorsAreSimilar) count = previousCount + currentCount
+
+      if (count < COUNT_MIN) return
+      combinedColorMap.set(currentColor, count)
+      previousColor = currentColor
+      previousCount = currentCount
+      return
+    })
+    console.log(combinedColorMap)
+    return combinedColorMap
+  }
+
+  // returns an object the the rgba values as keys on that object
+  parseColorString(colorString) {
+    if (!colorString.includes('rgba')) throw Error('Invalid rgba color provided')
+
+    const rgba = colorString.match(RGBA_REGEX);
+    if (rgba) return { 
+      r: rgba[0], 
+      g: rgba[1], 
+      b: rgba[2], 
+      a: rgba[3]
+    };
+
+    throw Error(`Error happened while parsing color string. No RGBA returned for value: ${colorString}`)
+  }
+
+  compareColorValues(current, prev) {
+    let rDiff = Math.abs(current.r - prev.r)
+    let gDiff = Math.abs(current.g - prev.g)
+    let bDiff = Math.abs(current.b - prev.b)
+    let aDiff = Math.abs(current.a - prev.a)
+
+    return rDiff > COLOR_DIFF || gDiff > COLOR_DIFF || bDiff > COLOR_DIFF || aDiff > COLOR_DIFF
   }
 }
